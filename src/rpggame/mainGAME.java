@@ -12,5 +12,7 @@ public class mainGAME {
         Jogador.setNome("Jogador1");
         Jogador.setVidabase(20);
         
+        
+        
     }
 }

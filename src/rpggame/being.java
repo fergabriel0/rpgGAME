@@ -7,12 +7,33 @@ public class being {
     private int defesa;
     private int manaATUAL;
     private int manaMáxima;
+    private int experienciaATUAL;
     
     public void Atacar(){}
     
-    public void restaurarMana(){}
+    public void restaurarMana(){
+        if (manaATUAL == manaMáxima) {
+            System.out.println("A mana já está cheia.");
+        } else {
+            manaATUAL = manaMáxima;
+        }
+    }
     
-    public void uparNível(){}
+    public void uparAtributos(){
+    defesa+=3;
+    atkbase+=3;
+    manaMáxima+= 10;
+    vidabase = (vidabase/2) + vidabase;
+    
+    }
+    
+    public void uparNível() {
+        if (experienciaATUAL >= 200) {
+            uparAtributos();
+        } else if (experienciaATUAL >= 400) {
+            uparAtributos();
+        }
+    }
 
     // GETS E SETS
     public int getVidabase() {
@@ -71,6 +92,4 @@ public class being {
     public void setManaMáxima(int manaMáxima) {
         this.manaMáxima = manaMáxima;
     }
-    
-    // AQUI QUE ACABA.
 }
