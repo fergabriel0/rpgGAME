@@ -1,5 +1,5 @@
 package página;
-
+import rpggame.mainGAME;
 public class principal extends javax.swing.JFrame {
     public principal() {
         initComponents();
@@ -12,7 +12,7 @@ public class principal extends javax.swing.JFrame {
         btn_inventario = new javax.swing.JButton();
         btn_loja = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        textAREA = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -22,11 +22,6 @@ public class principal extends javax.swing.JFrame {
         btn_jogar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btn_jogarMouseClicked(evt);
-            }
-        });
-        btn_jogar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_jogarActionPerformed(evt);
             }
         });
 
@@ -48,9 +43,11 @@ public class principal extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        textAREA.setColumns(20);
+        textAREA.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textAREA.setLineWrap(true);
+        textAREA.setRows(5);
+        jScrollPane1.setViewportView(textAREA);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,12 +82,6 @@ public class principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    // ----------------------------------------
-    
-    private void btn_jogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_jogarActionPerformed
-        ///
-    }//GEN-LAST:event_btn_jogarActionPerformed
-
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_inventarioActionPerformed
@@ -100,13 +91,22 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_lojaActionPerformed
 
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
-
+        mainGAME jogo = new mainGAME();
+        jogo.iniciarJOGO();
+        
+        jogo.getFeedback();
+        
+        //só resta uma questão... eu consigo me comunicar com outros lugares?.
+        
+        //métodos? fica pro próximo episódio...
     }//GEN-LAST:event_btn_jogarMouseClicked
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new principal().setVisible(true);
+                
+                
             }
         });
     }
@@ -116,6 +116,6 @@ public class principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_jogar;
     private javax.swing.JButton btn_loja;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea textAREA;
     // End of variables declaration//GEN-END:variables
 }

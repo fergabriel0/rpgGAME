@@ -9,7 +9,18 @@ public class being {
     private int manaMáxima;
     private int experienciaATUAL;
     
-    public void Atacar(){}
+    public being(String nome, int atkbase, int defesa, int vidabase) {
+        nome = this.nome;
+        atkbase = this.atkbase;
+        defesa = this.defesa;
+        vidabase = this.vidabase;
+    }
+    
+    public being(){}
+    
+    public void Atacar(int golpe){
+        
+    }
     
     public void restaurarMana(){
         if (manaATUAL == manaMáxima) {
