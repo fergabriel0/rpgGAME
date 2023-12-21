@@ -13,19 +13,15 @@ public class mainGAME {
         Jogador.setNome("Jogador1");
         Jogador.setVidabase(20);
         
-        /*
-        a ideia pra conectar os dois é a seguinte:
+        feedback = "coisas aconteceram";
+    }
+    
+    public void refreshGame(String cmd) {
+
+    }
+    
+    public void loopingGame() {
         
-        aqui tem todo o código do jogo normal, blz.
-        
-        vai ter métodos que serão pra comunicar com o principal.
-        
-        única dúvida: tem como executar no principal.java:
-        a criação do objeto; pode, executa toda a pilha de comandos logo de uma vez.
-        os métodos do objeto;
-        
-        */
-        //feedback.set/get.
     }
             
     public static void main(String[] args) {
