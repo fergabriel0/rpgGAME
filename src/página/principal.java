@@ -1,5 +1,7 @@
 package página;
 import rpggame.mainGAME;
+import rpggame.inventario;
+
 public class principal extends javax.swing.JFrame {
     public principal() {
         initComponents();
@@ -53,6 +55,11 @@ public class principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(textAREA);
 
         textfield.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        textfield.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textfieldActionPerformed(evt);
+            }
+        });
 
         btnENVIAR.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnENVIAR.setText("ENVIAR");
@@ -103,29 +110,47 @@ public class principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
+    inventario INV = new inventario();
+    mainGAME jogo = new mainGAME();
+    int numeroPagina = 0;
+    
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
-        // TODO add your handling code here:
+        numeroPagina = 1;
+        
+        //
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
+        numeroPagina = 2;
         
     }//GEN-LAST:event_btn_lojaActionPerformed
 
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
-        mainGAME jogo = new mainGAME();
+        numeroPagina = 3;
+        
         jogo.iniciarJOGO();
-        
-        textAREA.setText(jogo.getFeedback());
-        //só resta uma questão... eu consigo me comunicar com outros lugares?.
-        
-        //métodos? fica pro próximo episódio...
     }//GEN-LAST:event_btn_jogarMouseClicked
 
     private void btnENVIARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnENVIARMouseClicked
         String comando = textfield.getText();
         
+        if (numeroPagina == 1) {
+            
+        } else if (numeroPagina == 2) {
+            
+        } else if (numeroPagina == 3) {
+            
+        } else {
+            textfield.setToolTipText("Essa ação não existe, tente outra.");
+        }
+        /* ai é de cada classe o comando a ser usado */
+        
     }//GEN-LAST:event_btnENVIARMouseClicked
+
+    private void textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textfieldActionPerformed
 
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {

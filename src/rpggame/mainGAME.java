@@ -12,20 +12,6 @@ public class mainGAME {
         Jogador.setNivel(2);
         Jogador.setNome("Jogador1");
         Jogador.setVidabase(20);
-        
-        feedback = "coisas aconteceram";
-    }
-    
-    public void refreshGame(String cmd) {
-
-    }
-    
-    public void loopingGame() {
-        
-    }
-            
-    public static void main(String[] args) {
-        
     }
     
     ////////////////////////////////////////////////////////////////////////////            
