@@ -1,8 +1,5 @@
 package rpggame;
 public class mainGAME {
-    
-    private String feedback; //getter e setter
-    
     public void iniciarJOGO() {
         being Jogador = new being();
         Jogador.setAtkbase(3);
@@ -15,12 +12,4 @@ public class mainGAME {
     }
     
     ////////////////////////////////////////////////////////////////////////////            
-
-    public String getFeedback() {
-        return feedback;
-    }
-    
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
-    }
 }
