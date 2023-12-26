@@ -7,9 +7,20 @@ public class mainGAME {
         Jogador.setManaATUAL(0);
         Jogador.setManaMáxima(100);
         Jogador.setNivel(2);
-        Jogador.setNome("Jogador1");
+        Jogador.setNome("Jogador");
         Jogador.setVidabase(20);
+        
+        int vez = 0;
+        
+        if (vez == 0) {
+            //vez-player
+        } else if (vez == 1) {
+            //vez-inimigo
+        }
+        
     }
+    
+    
     
     ////////////////////////////////////////////////////////////////////////////            
 }

@@ -1,6 +1,8 @@
 package página;
+import java.util.ArrayList;
 import rpggame.mainGAME;
 import rpggame.inventario;
+import rpggame.loja;
 
 public class principal extends javax.swing.JFrame {
     public principal() {
@@ -49,7 +51,7 @@ public class principal extends javax.swing.JFrame {
 
         textAREA.setEditable(false);
         textAREA.setColumns(20);
-        textAREA.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        textAREA.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         textAREA.setLineWrap(true);
         textAREA.setRows(5);
         jScrollPane1.setViewportView(textAREA);
@@ -76,9 +78,9 @@ public class principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(btn_jogar, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(97, 97, 97)
+                .addGap(108, 108, 108)
                 .addComponent(btn_loja, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 97, Short.MAX_VALUE)
                 .addComponent(btn_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(50, 50, 50))
             .addGroup(layout.createSequentialGroup()
@@ -94,12 +96,12 @@ public class principal extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(20, 20, 20)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(textfield)
-                    .addComponent(btnENVIAR, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE))
+                    .addComponent(btnENVIAR, javax.swing.GroupLayout.DEFAULT_SIZE, 51, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btn_inventario, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,17 +115,17 @@ public class principal extends javax.swing.JFrame {
     
     inventario INV = new inventario();
     mainGAME jogo = new mainGAME();
+    loja mercado = new loja();
+    
     int numeroPagina = 0;
     
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
         numeroPagina = 1;
-        
         //
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
         numeroPagina = 2;
-        
     }//GEN-LAST:event_btn_lojaActionPerformed
 
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
@@ -136,11 +138,14 @@ public class principal extends javax.swing.JFrame {
         String comando = textfield.getText();
         
         if (numeroPagina == 1) {
-            
+            //inventario
+            comandos(comando);
         } else if (numeroPagina == 2) {
-            
+            //loja
+            comandos(comando);
         } else if (numeroPagina == 3) {
-            
+            //jogar
+            comandos(comando);
         } else {
             textfield.setToolTipText("Essa ação não existe, tente outra.");
         }
@@ -151,13 +156,25 @@ public class principal extends javax.swing.JFrame {
     private void textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textfieldActionPerformed
-
+    
+    public void comandos(String c) {
+        switch(c) {
+        case "A":
+            textAREA.setText("Ação realizada de número 1.");
+        break;
+        case "B":
+            textAREA.setText("Ação realizada de número 2.");
+        break;
+        default:
+            textfield.setToolTipText("Me desculpe, mas essa ação não existe.");
+        }
+    }
+    
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new principal().setVisible(true);
-                
-                
+
             }
         });
     }

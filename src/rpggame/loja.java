@@ -20,15 +20,13 @@ public class loja {
     /* arrays de objetos a serem vendidos */
     ArrayList<loja> lista1 = new ArrayList<loja>();
 
-    public ArrayList getLista1() {
+    public void getLista1() {
         loja item1 = new loja(10, "poção de cura", "cura o usuário em 10 pontos.",5);
         loja item2 = new loja(20, "poção de mana", "cura a mana do usuário em 50 pontos.",10);
         loja item3 = new loja(15, "poção de defesa", "concede 4 de defesa por 1 batalha.",8);
-    
+        
         lista1.add(item1);
         lista1.add(item2);
         lista1.add(item3);
-        
-        return lista1;
     }
 }
