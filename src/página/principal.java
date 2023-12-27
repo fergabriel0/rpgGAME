@@ -1,4 +1,5 @@
 package página;
+
 import java.util.ArrayList;
 import rpggame.mainGAME;
 import rpggame.inventario;
@@ -121,15 +122,31 @@ public class principal extends javax.swing.JFrame {
     
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
         numeroPagina = 1;
-        //
+        textAREA.setText("");
+        
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
         numeroPagina = 2;
+        
+        textAREA.setText("");
+        
+        ArrayList<loja> items = mercado.getLista1();
+        mercado.addITEMS();
+        
+        for (int i = 0; i<items.size(); i++) {
+        textAREA.setText(textAREA.getText() +
+            "[NOME]: " + items.get(i).getNome() + "\n" +
+            "[PREÇO]: " + items.get(i).getPreco() + "\n" +
+            "[DESCRIÇÃO]: " + items.get(i).getDescricao() + "\n" +
+            "[VENDA]: " + items.get(i).getPrecoVENDA() + "\n\n");
+        }
+        
     }//GEN-LAST:event_btn_lojaActionPerformed
 
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
         numeroPagina = 3;
+        textAREA.setText("");
         
         jogo.iniciarJOGO();
     }//GEN-LAST:event_btn_jogarMouseClicked

@@ -11,22 +11,48 @@ public class loja {
     public loja() {}
     
     public loja(int preco, String nome, String descricao, int precoVENDA) {
-        preco = this.preco;
-        nome = this.nome;
-        descricao = this.descricao;
-        precoVENDA = this.precoVENDA;
+        /* MANO, O ERRO QUE TAVA ANTES: preco = this.preco; */
+        this.nome = nome;
+        this.preco = preco;
+        this.descricao = descricao;
+        this.precoVENDA = precoVENDA;
     } /* construtor */
     
     /* arrays de objetos a serem vendidos */
-    ArrayList<loja> lista1 = new ArrayList<loja>();
+    ArrayList<loja> lista1 = new ArrayList<>();
 
-    public void getLista1() {
-        loja item1 = new loja(10, "poção de cura", "cura o usuário em 10 pontos.",5);
-        loja item2 = new loja(20, "poção de mana", "cura a mana do usuário em 50 pontos.",10);
-        loja item3 = new loja(15, "poção de defesa", "concede 4 de defesa por 1 batalha.",8);
+    public void addITEMS() {
+        loja item1 = new loja(10, "Poção de Cura", "Cura o usuário em 10 pontos.",5);
+        loja item2 = new loja(20, "Poção de Mana", "Cura a mana do usuário em 50 pontos.",10);
+        loja item3 = new loja(15, "Poção de Defesa", "Concede 4 de defesa por 1 batalha.",8);
+        loja item4 = new loja(15, "Poção de Ataque", "Concede 3 de ataque por 1 batalha.",8);
         
         lista1.add(item1);
         lista1.add(item2);
         lista1.add(item3);
+        lista1.add(item4);
+        
+        //a lista2 pode adicionar depois (é a que se refere a armas).
+    }
+
+    public ArrayList<loja> getLista1() {
+        return lista1;
+    }
+    
+    //GETTERS
+    public int getPreco() {
+        return preco;
+    }
+    
+    public String getNome() {
+        return nome;
+    }
+
+    public int getPrecoVENDA() {
+        return precoVENDA;
+    }
+
+    public String getDescricao() {
+        return descricao;
     }
 }
