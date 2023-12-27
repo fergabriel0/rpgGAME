@@ -2,7 +2,6 @@ package página;
 
 import java.util.ArrayList;
 import rpggame.mainGAME;
-import rpggame.inventario;
 import rpggame.loja;
 
 public class principal extends javax.swing.JFrame {
@@ -33,7 +32,7 @@ public class principal extends javax.swing.JFrame {
         });
 
         btn_inventario.setFont(new java.awt.Font("Swis721 BT", 0, 18)); // NOI18N
-        btn_inventario.setText("LOJA");
+        btn_inventario.setText("INVENTÁRIO");
         btn_inventario.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         btn_inventario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -42,7 +41,7 @@ public class principal extends javax.swing.JFrame {
         });
 
         btn_loja.setFont(new java.awt.Font("Swis721 BT", 0, 18)); // NOI18N
-        btn_loja.setText("INVENTÁRIO");
+        btn_loja.setText("LOJA");
         btn_loja.setCursor(new java.awt.Cursor(java.awt.Cursor.CROSSHAIR_CURSOR));
         btn_loja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -52,7 +51,7 @@ public class principal extends javax.swing.JFrame {
 
         textAREA.setEditable(false);
         textAREA.setColumns(20);
-        textAREA.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        textAREA.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         textAREA.setLineWrap(true);
         textAREA.setRows(5);
         jScrollPane1.setViewportView(textAREA);
@@ -114,7 +113,6 @@ public class principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    inventario INV = new inventario();
     mainGAME jogo = new mainGAME();
     loja mercado = new loja();
     
@@ -124,6 +122,12 @@ public class principal extends javax.swing.JFrame {
         numeroPagina = 1;
         textAREA.setText("");
         
+        int inventarioTamanho = 24;
+        
+        for (int i = 0; i<inventarioTamanho; i++) {
+        }
+        
+        //otimizar os sistemas atuais e mostras
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
@@ -137,9 +141,9 @@ public class principal extends javax.swing.JFrame {
         for (int i = 0; i<items.size(); i++) {
         textAREA.setText(textAREA.getText() +
             "[NOME]: " + items.get(i).getNome() + "\n" +
-            "[PREÇO]: " + items.get(i).getPreco() + "\n" +
+            "[PREÇO]: " + items.get(i).getPreco() + "$ \n" +
             "[DESCRIÇÃO]: " + items.get(i).getDescricao() + "\n" +
-            "[VENDA]: " + items.get(i).getPrecoVENDA() + "\n\n");
+            "[VENDA]: " + items.get(i).getPrecoVENDA() + "$ \n\n");
         }
         
     }//GEN-LAST:event_btn_lojaActionPerformed
@@ -148,7 +152,6 @@ public class principal extends javax.swing.JFrame {
         numeroPagina = 3;
         textAREA.setText("");
         
-        jogo.iniciarJOGO();
     }//GEN-LAST:event_btn_jogarMouseClicked
 
     private void btnENVIARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnENVIARMouseClicked
@@ -156,13 +159,13 @@ public class principal extends javax.swing.JFrame {
         
         if (numeroPagina == 1) {
             //inventario
-            comandos(comando);
+            comandosINV(comando);
         } else if (numeroPagina == 2) {
             //loja
-            comandos(comando);
+            comandosLOJA(comando);
         } else if (numeroPagina == 3) {
             //jogar
-            comandos(comando);
+            comandosJOGAR(comando);
         } else {
             textfield.setToolTipText("Essa ação não existe, tente outra.");
         }
@@ -174,13 +177,30 @@ public class principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_textfieldActionPerformed
     
-    public void comandos(String c) {
+    public void comandosINV(String c) {
         switch(c) {
         case "A":
             textAREA.setText("Ação realizada de número 1.");
         break;
-        case "B":
-            textAREA.setText("Ação realizada de número 2.");
+        default:
+            textfield.setToolTipText("Me desculpe, mas essa ação não existe.");
+        }
+    }
+    
+    public void comandosLOJA(String c) {
+        switch(c) {
+        case "A":
+            textAREA.setText("Ação realizada de número 1.");
+        break;
+        default:
+            textfield.setToolTipText("Me desculpe, mas essa ação não existe.");
+        }
+    }
+    
+    public void comandosJOGAR(String c) {
+        switch(c) {
+        case "A":
+            textAREA.setText("Ação realizada de número 1.");
         break;
         default:
             textfield.setToolTipText("Me desculpe, mas essa ação não existe.");
