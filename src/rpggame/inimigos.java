@@ -5,6 +5,7 @@ public class inimigos {
     private being Norbit = new being("Norbit", 4, 3, 15);
     private being Minotauro = new being("Minotauro", 5, 4, 20);
     private being Hidrolabial = new being("Hidrolabial", 3, 1, 8);
-
+    
+    //fazer um arraylist.
     ///////////////////////////////////////////////////////////////////////////
 }

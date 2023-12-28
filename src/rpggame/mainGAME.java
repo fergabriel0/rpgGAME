@@ -9,6 +9,15 @@ public class mainGAME {
         Jogador.setNivel(2);
         Jogador.setNome("Jogador");
         Jogador.setVidabase(20);
+        Jogador.setOuro(500);
+    }
+    
+    public void performAction(being target){
+        //battleAction.execute(this, target);
+    };
+    
+    public void setBattleAction(being chosenAction){
+        //battleAction = chosenAction;
     }
 
     ////////////////////////////////////////////////////////////////////////////            
