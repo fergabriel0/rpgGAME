@@ -20,6 +20,7 @@ public class loja {
     
     /* arrays de objetos a serem vendidos */
     ArrayList<loja> lista1 = new ArrayList<>();
+    ArrayList<loja> lista2 = new ArrayList<>();
 
     public void addITEMS() {
         loja item1 = new loja(10, "Poção de Cura", "Cura o usuário em 10 pontos.",5);
@@ -37,6 +38,10 @@ public class loja {
 
     public ArrayList<loja> getLista1() {
         return lista1;
+    }
+    
+    public ArrayList<loja> getLista2() {
+        return lista2;
     }
     
     //GETTERS
