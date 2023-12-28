@@ -1,6 +1,9 @@
 package página;
 
+import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
+import java.util.Arrays;
+import rpggame.being;
 import rpggame.mainGAME;
 import rpggame.loja;
 
@@ -122,12 +125,8 @@ public class principal extends javax.swing.JFrame {
         numeroPagina = 1;
         textAREA.setText("");
         
-        int inventarioTamanho = 24;
-        
-        for (int i = 0; i<inventarioTamanho; i++) {
-        }
-        
-        //otimizar os sistemas atuais e mostras
+        //PARA HOJE:
+        //sistema de selecionar inimigo
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
@@ -146,6 +145,7 @@ public class principal extends javax.swing.JFrame {
             "[VENDA]: " + items.get(i).getPrecoVENDA() + "$ \n\n");
         }
         
+        textAREA.setText(textAREA.getText()+"Para fazer a compra de um item, digite: comprar -> nome do item -> quantidade.");
     }//GEN-LAST:event_btn_lojaActionPerformed
 
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
@@ -169,7 +169,6 @@ public class principal extends javax.swing.JFrame {
         } else {
             textfield.setToolTipText("Essa ação não existe, tente outra.");
         }
-        /* ai é de cada classe o comando a ser usado */
         
     }//GEN-LAST:event_btnENVIARMouseClicked
 
@@ -178,40 +177,34 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_textfieldActionPerformed
     
     public void comandosINV(String c) {
-        switch(c) {
-        case "A":
-            textAREA.setText("Ação realizada de número 1.");
-        break;
-        default:
-            textfield.setToolTipText("Me desculpe, mas essa ação não existe.");
-        }
+        
     }
     
     public void comandosLOJA(String c) {
-        switch(c) {
-        case "A":
-            textAREA.setText("Ação realizada de número 1.");
-        break;
-        default:
-            textfield.setToolTipText("Me desculpe, mas essa ação não existe.");
+        //comprar POÇÃO DE CURA 5
+        String[] textoSeparado = c.split("->");
+        //System.out.println(Arrays.toString(textoSeparado));
+        
+        String acao = textoSeparado[0];
+        String item = textoSeparado[1];
+        int quantidade = parseInt(textoSeparado[2]);
+        
+        if (acao == "comprar") {
+            
+        } else if (acao == "vender") {
+            
         }
+        
     }
     
     public void comandosJOGAR(String c) {
-        switch(c) {
-        case "A":
-            textAREA.setText("Ação realizada de número 1.");
-        break;
-        default:
-            textfield.setToolTipText("Me desculpe, mas essa ação não existe.");
-        }
+        
     }
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new principal().setVisible(true);
-
             }
         });
     }
