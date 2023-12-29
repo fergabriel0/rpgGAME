@@ -2,10 +2,9 @@ package página;
 
 import static java.lang.Integer.parseInt;
 import java.util.ArrayList;
-import java.util.Arrays;
-import rpggame.being;
 import rpggame.mainGAME;
 import rpggame.loja;
+import rpggame.minerios;
 
 public class principal extends javax.swing.JFrame {
     public principal() {
@@ -118,15 +117,14 @@ public class principal extends javax.swing.JFrame {
     
     mainGAME jogo = new mainGAME();
     loja mercado = new loja();
+    minerios spelunky = new minerios();
     
     int numeroPagina = 0;
     
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
         numeroPagina = 1;
         textAREA.setText("");
-        
-        //PARA HOJE:
-        //sistema de selecionar inimigo
+
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
@@ -151,6 +149,14 @@ public class principal extends javax.swing.JFrame {
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
         numeroPagina = 3;
         textAREA.setText("");
+        
+        ArrayList<minerios> minerios = spelunky.minerar();
+        
+        for (int i = 0; i<minerios.size(); i++) {
+        textAREA.setText(textAREA.getText() +
+            "[NOME]: " + minerios.get(i).getNomedoMinerio() + "\n" +
+            "[VENDA]: " + minerios.get(i).getValordeVENDA() + "$ \n\n");
+        }
         
     }//GEN-LAST:event_btn_jogarMouseClicked
 

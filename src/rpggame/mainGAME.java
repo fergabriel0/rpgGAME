@@ -20,14 +20,6 @@ public class mainGAME {
         Jogador.setNome("Jogador");
         Jogador.setOuro(500);
     }
-    
-    public void performAction(being target){
-        //battleAction.execute(this, target);
-    };
-    
-    public void setBattleAction(being chosenAction){
-        //battleAction = chosenAction;
-    }
 
     ////////////////////////////////////////////////////////////////////////////            
 }
