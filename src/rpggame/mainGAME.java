@@ -16,9 +16,9 @@ public class mainGAME {
     
     public void iniciarPersonagem() {
         being Jogador = new being();
-        Jogador.setNivel(2);
-        Jogador.setNome("Jogador");
-        Jogador.setOuro(500);
+        Jogador.setNivel(1);
+        Jogador.setOuro(20);
+        Jogador.setExperienciaATUAL(0);
     }
 
     ////////////////////////////////////////////////////////////////////////////            

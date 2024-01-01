@@ -63,11 +63,6 @@ public class principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(textAREA);
 
         textfield.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        textfield.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textfieldActionPerformed(evt);
-            }
-        });
 
         btnENVIAR.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         btnENVIAR.setText("ENVIAR");
@@ -135,7 +130,7 @@ public class principal extends javax.swing.JFrame {
         textAREA.setText("");
         
         ArrayList<loja> items = mercado.getLista1();
-        mercado.addITEMS();
+        mercado.addITEMSlista1();
         
         for (int i = 0; i<items.size(); i++) {
         textAREA.setText(textAREA.getText() +
@@ -163,9 +158,9 @@ public class principal extends javax.swing.JFrame {
         
         ArrayList<minerios> minerios_conseguidos = new ArrayList<>();
         
-        minerios Prata = new minerios(10, "Prata");
-        minerios Ouro = new minerios(20, "Ouro");
-        minerios Platina = new minerios(30, "Platina");
+        minerios Prata = new minerios(20, "Prata");
+        minerios Ouro = new minerios(40, "Ouro");
+        minerios Platina = new minerios(80, "Platina");
         
         //modificação;
         if (luckyGUESSconvertido == randomizer) {
@@ -201,10 +196,6 @@ public class principal extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_btnENVIARMouseClicked
-
-    private void textfieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textfieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textfieldActionPerformed
     
     public void comandosINV(String c) {
         
@@ -213,7 +204,6 @@ public class principal extends javax.swing.JFrame {
     public void comandosLOJA(String c) {
         //comprar -> POÇÃO DE CURA -> 5
         String[] textoSeparado = c.split("->");
-        //System.out.println(Arrays.toString(textoSeparado));
         
         String acao = textoSeparado[0];
         String item = textoSeparado[1];

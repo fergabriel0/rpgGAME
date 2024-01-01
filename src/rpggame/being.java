@@ -1,6 +1,5 @@
 package rpggame;
 public class being {
-    private String nome;
     private int nivel;
     private int experienciaATUAL;
     private int ouro;
@@ -9,14 +8,6 @@ public class being {
     }
 
     // GETS E SETS
-    public String getNome() {
-        return nome;
-    }
-    
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public int getNivel() {
         return nivel;
     }

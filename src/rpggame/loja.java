@@ -22,18 +22,22 @@ public class loja {
     ArrayList<loja> lista1 = new ArrayList<>();
     ArrayList<loja> lista2 = new ArrayList<>();
 
-    public void addITEMS() {
-        loja item1 = new loja(10, "Poção de Cura", "Cura o usuário em 10 pontos.",5);
-        loja item2 = new loja(20, "Poção de Mana", "Cura a mana do usuário em 50 pontos.",10);
-        loja item3 = new loja(15, "Poção de Defesa", "Concede 4 de defesa por 1 batalha.",8);
-        loja item4 = new loja(15, "Poção de Ataque", "Concede 3 de ataque por 1 batalha.",8);
+    public void addITEMSlista1() {
+        loja item1 = new loja(100, "Poção de Prata", "Multiplica em 3x a quantidade de minérios de Prata conseguidos.",45);
+        loja item2 = new loja(200, "Colar de Ouro", "Multiplica em 3x a quantidade de minérios de Ouro conseguidos.",100);
+        loja item3 = new loja(400, "Moeda de Platina", "Aumenta a chance de se conseguir minérios de Platina.",200);
         
         lista1.add(item1);
         lista1.add(item2);
         lista1.add(item3);
-        lista1.add(item4);
+    }
+    
+    public void addITEMSlista2() {
+        loja item4 = new loja(1000, "Localizador Sonar", "Permite encontrar tesouros.",5);
+        loja item5 = new loja(1300, "Sexto Sentido", "Permite encontrar joias.",10);
         
-        //a lista2 pode adicionar depois (é a que se refere a armas).
+        lista2.add(item4);
+        lista2.add(item5);
     }
 
     public ArrayList<loja> getLista1() {
