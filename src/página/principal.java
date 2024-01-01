@@ -1,14 +1,18 @@
 package página;
 
 import static java.lang.Integer.parseInt;
+import javax.swing.JOptionPane;
 import java.util.ArrayList;
 import rpggame.mainGAME;
 import rpggame.loja;
 import rpggame.minerios;
+import java.util.Random;
 
 public class principal extends javax.swing.JFrame {
     public principal() {
         initComponents();
+        
+        jogo.iniciarPersonagem();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -117,14 +121,12 @@ public class principal extends javax.swing.JFrame {
     
     mainGAME jogo = new mainGAME();
     loja mercado = new loja();
-    minerios spelunky = new minerios();
-    
     int numeroPagina = 0;
     
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
         numeroPagina = 1;
         textAREA.setText("");
-
+        
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
@@ -149,13 +151,35 @@ public class principal extends javax.swing.JFrame {
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
         numeroPagina = 3;
         textAREA.setText("");
+
+        Random gerador = new Random();
+        int randomizer = gerador.nextInt(101);
+        System.out.println(randomizer);
         
-        ArrayList<minerios> minerios = spelunky.minerar();
+        String luckyGUESS;
+        luckyGUESS = JOptionPane.showInputDialog("Escolha um número de 0 a 100.\nquanto mais perto do número sorteado você acertar,\nmais serão as recompensas.");
         
-        for (int i = 0; i<minerios.size(); i++) {
+        int luckyGUESSconvertido = Integer.parseInt(luckyGUESS);
+        
+        ArrayList<minerios> minerios_conseguidos = new ArrayList<>();
+        
+        minerios Prata = new minerios(10, "Prata");
+        minerios Ouro = new minerios(20, "Ouro");
+        minerios Platina = new minerios(30, "Platina");
+        
+        //modificação;
+        if (luckyGUESSconvertido == randomizer) {
+            minerios_conseguidos.add(Platina);
+        } else if ((luckyGUESSconvertido+20) >= randomizer && (luckyGUESSconvertido-20) <= randomizer) {
+            minerios_conseguidos.add(Ouro);
+        } else {
+            minerios_conseguidos.add(Prata);
+        }
+        
+        for (int i = 0; i<minerios_conseguidos.size(); i++) {
         textAREA.setText(textAREA.getText() +
-            "[NOME]: " + minerios.get(i).getNomedoMinerio() + "\n" +
-            "[VENDA]: " + minerios.get(i).getValordeVENDA() + "$ \n\n");
+            "[NOME]: " + minerios_conseguidos.get(i).getNomedoMinerio() + "\n" +
+            "[VENDA]: " + minerios_conseguidos.get(i).getValordeVENDA() + "$ \n\n");
         }
         
     }//GEN-LAST:event_btn_jogarMouseClicked
@@ -187,7 +211,7 @@ public class principal extends javax.swing.JFrame {
     }
     
     public void comandosLOJA(String c) {
-        //comprar POÇÃO DE CURA 5
+        //comprar -> POÇÃO DE CURA -> 5
         String[] textoSeparado = c.split("->");
         //System.out.println(Arrays.toString(textoSeparado));
         
@@ -211,6 +235,7 @@ public class principal extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new principal().setVisible(true);
+                
             }
         });
     }
