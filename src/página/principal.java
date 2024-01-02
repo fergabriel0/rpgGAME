@@ -118,9 +118,21 @@ public class principal extends javax.swing.JFrame {
     loja mercado = new loja();
     int numeroPagina = 0;
     
+    ArrayList<minerios> InventarioMinerios = new ArrayList<>();
+    ArrayList<loja> InventarioItems = new ArrayList<>();
+    
+    minerios Prata = new minerios(20, "Prata");
+    minerios Ouro = new minerios(40, "Ouro");
+    minerios Platina = new minerios(80, "Platina");
+    
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
         numeroPagina = 1;
         textAREA.setText("");
+        
+        for (int i = 0; i<InventarioMinerios.size(); i++) {
+            textAREA.setText(textAREA.getText()+
+                "[NOME]: " + InventarioMinerios.get(i).getNomedoMinerio()+"\n");
+        }
         
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
@@ -144,39 +156,30 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_lojaActionPerformed
 
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
-        numeroPagina = 3;
         textAREA.setText("");
 
         Random gerador = new Random();
         int randomizer = gerador.nextInt(101);
-        System.out.println(randomizer);
         
         String luckyGUESS;
         luckyGUESS = JOptionPane.showInputDialog("Escolha um número de 0 a 100.\nquanto mais perto do número sorteado você acertar,\nmais serão as recompensas.");
         
         int luckyGUESSconvertido = Integer.parseInt(luckyGUESS);
         
-        ArrayList<minerios> minerios_conseguidos = new ArrayList<>();
-        
-        minerios Prata = new minerios(20, "Prata");
-        minerios Ouro = new minerios(40, "Ouro");
-        minerios Platina = new minerios(80, "Platina");
-        
         //modificação;
         if (luckyGUESSconvertido == randomizer) {
-            minerios_conseguidos.add(Platina);
+            InventarioMinerios.add(Platina);
         } else if ((luckyGUESSconvertido+20) >= randomizer && (luckyGUESSconvertido-20) <= randomizer) {
-            minerios_conseguidos.add(Ouro);
+            InventarioMinerios.add(Ouro);
         } else {
-            minerios_conseguidos.add(Prata);
+            InventarioMinerios.add(Prata);
         }
         
-        for (int i = 0; i<minerios_conseguidos.size(); i++) {
+        for (int i = 0; i<InventarioMinerios.size(); i++) {
         textAREA.setText(textAREA.getText() +
-            "[NOME]: " + minerios_conseguidos.get(i).getNomedoMinerio() + "\n" +
-            "[VENDA]: " + minerios_conseguidos.get(i).getValordeVENDA() + "$ \n\n");
+            "[NOME]: " + InventarioMinerios.get(i).getNomedoMinerio() + "\n" +
+            "[VENDA]: " + InventarioMinerios.get(i).getValordeVENDA() + "$ \n\n");
         }
-        
     }//GEN-LAST:event_btn_jogarMouseClicked
 
     private void btnENVIARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnENVIARMouseClicked
@@ -188,20 +191,18 @@ public class principal extends javax.swing.JFrame {
         } else if (numeroPagina == 2) {
             //loja
             comandosLOJA(comando);
-        } else if (numeroPagina == 3) {
-            //jogar
-            comandosJOGAR(comando);
         } else {
-            textfield.setToolTipText("Essa ação não existe, tente outra.");
+            textfield.setToolTipText("Essa ação não está disponível, tente outra.");
         }
         
     }//GEN-LAST:event_btnENVIARMouseClicked
     
-    public void comandosINV(String c) {
-        
-    }
+    public void comandosINV(String c) {}
     
     public void comandosLOJA(String c) {
+        ArrayList<loja> items = mercado.getLista1();
+        mercado.addITEMSlista1();        
+
         //comprar -> POÇÃO DE CURA -> 5
         String[] textoSeparado = c.split("->");
         
@@ -210,14 +211,14 @@ public class principal extends javax.swing.JFrame {
         int quantidade = parseInt(textoSeparado[2]);
         
         if (acao == "comprar") {
-            
+            for (int i = 0; i<items.size(); i++) {
+                if (mercado.getNome() == item) {
+                InventarioItems.add(items.get(i));
+                }
+            }
         } else if (acao == "vender") {
             
         }
-        
-    }
-    
-    public void comandosJOGAR(String c) {
         
     }
     
