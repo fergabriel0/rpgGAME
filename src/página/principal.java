@@ -1,9 +1,7 @@
 package página;
 
-import static java.lang.Integer.parseInt;
 import javax.swing.JOptionPane;
 import java.util.ArrayList;
-import rpggame.mainGAME;
 import rpggame.loja;
 import rpggame.minerios;
 import java.util.Random;
@@ -12,7 +10,6 @@ public class principal extends javax.swing.JFrame {
     public principal() {
         initComponents();
         
-        jogo.iniciarPersonagem();
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -114,12 +111,17 @@ public class principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    mainGAME jogo = new mainGAME();
     loja mercado = new loja();
     int numeroPagina = 0;
     
+    //PENDÊNCIAS:
+    // SISTEMA DE LOJA
+    // SISTEMA DE INVENTÁRIO
+    // SISTEMA DE JOGADOR
+    
     ArrayList<minerios> InventarioMinerios = new ArrayList<>();
     ArrayList<loja> InventarioItems = new ArrayList<>();
+    ArrayList<loja> items = mercado.getLista1();
     
     minerios Prata = new minerios(20, "Prata");
     minerios Ouro = new minerios(40, "Ouro");
@@ -128,6 +130,7 @@ public class principal extends javax.swing.JFrame {
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
         numeroPagina = 1;
         textAREA.setText("");
+        textfield.setEnabled(true);
         
         for (int i = 0; i<InventarioMinerios.size(); i++) {
             textAREA.setText(textAREA.getText()+
@@ -138,12 +141,9 @@ public class principal extends javax.swing.JFrame {
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
         numeroPagina = 2;
-        
         textAREA.setText("");
-        
-        ArrayList<loja> items = mercado.getLista1();
-        mercado.addITEMSlista1();
-        
+        textfield.setEnabled(true);
+       
         for (int i = 0; i<items.size(); i++) {
         textAREA.setText(textAREA.getText() +
             "[NOME]: " + items.get(i).getNome() + "\n" +
@@ -152,24 +152,26 @@ public class principal extends javax.swing.JFrame {
             "[VENDA]: " + items.get(i).getPrecoVENDA() + "$ \n\n");
         }
         
-        textAREA.setText(textAREA.getText()+"Para fazer a compra de um item, digite: comprar -> nome do item -> quantidade.");
+        textAREA.setText(textAREA.getText()+"Para fazer a compra de um item, digite: comprar -> nome do item -> quantidade.\n"
+        +"Para fazer a venda de um item, digite: vender -> nome do item -> quantidade.");
     }//GEN-LAST:event_btn_lojaActionPerformed
 
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
-        textAREA.setText("");
+        textAREA.setText("[HISTÓRICO]:\n");
+        textfield.setEnabled(false);
 
         Random gerador = new Random();
         int randomizer = gerador.nextInt(101);
         
         String luckyGUESS;
-        luckyGUESS = JOptionPane.showInputDialog("Escolha um número de 0 a 100.\nquanto mais perto do número sorteado você acertar,\nmais serão as recompensas.");
+        luckyGUESS = JOptionPane.showInputDialog(null,"Escolha um número de 0 a 100.\nQuanto mais perto do número sorteado você acertar,\nmais serão as recompensas.","Jogo de Adivinhação",JOptionPane.PLAIN_MESSAGE);
         
         int luckyGUESSconvertido = Integer.parseInt(luckyGUESS);
         
         //modificação;
         if (luckyGUESSconvertido == randomizer) {
             InventarioMinerios.add(Platina);
-        } else if ((luckyGUESSconvertido+20) >= randomizer && (luckyGUESSconvertido-20) <= randomizer) {
+        } else if ((luckyGUESSconvertido+10) >= randomizer && (luckyGUESSconvertido-10) <= randomizer) {
             InventarioMinerios.add(Ouro);
         } else {
             InventarioMinerios.add(Prata);
@@ -192,6 +194,7 @@ public class principal extends javax.swing.JFrame {
             //loja
             comandosLOJA(comando);
         } else {
+            textfield.setText("");
             textfield.setToolTipText("Essa ação não está disponível, tente outra.");
         }
         
@@ -199,26 +202,13 @@ public class principal extends javax.swing.JFrame {
     
     public void comandosINV(String c) {}
     
-    public void comandosLOJA(String c) {
-        ArrayList<loja> items = mercado.getLista1();
-        mercado.addITEMSlista1();        
-
-        //comprar -> POÇÃO DE CURA -> 5
+    public void comandosLOJA(String c) {      
+        //comprar -> nome do item -> quantidade
         String[] textoSeparado = c.split("->");
+        System.out.println(textoSeparado[0]);
         
         String acao = textoSeparado[0];
         String item = textoSeparado[1];
-        int quantidade = parseInt(textoSeparado[2]);
-        
-        if (acao == "comprar") {
-            for (int i = 0; i<items.size(); i++) {
-                if (mercado.getNome() == item) {
-                InventarioItems.add(items.get(i));
-                }
-            }
-        } else if (acao == "vender") {
-            
-        }
         
     }
     
