@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import rpggame.loja;
 import rpggame.minerios;
 import java.util.Random;
+import rpggame.being;
 
 public class principal extends javax.swing.JFrame {
     public principal() {
         initComponents();
-        
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -113,15 +113,17 @@ public class principal extends javax.swing.JFrame {
     
     loja mercado = new loja();
     int numeroPagina = 0;
+    being Jogador = new being(1, 20, 50);
     
     //PENDÊNCIAS:
     // SISTEMA DE LOJA
     // SISTEMA DE INVENTÁRIO
     // SISTEMA DE JOGADOR
+    // SISTEMA DE COMPRA
+    // SISTEMA DE VENDA /~~
     
     ArrayList<minerios> InventarioMinerios = new ArrayList<>();
-    ArrayList<loja> InventarioItems = new ArrayList<>();
-    ArrayList<loja> items = mercado.getLista1();
+    ArrayList<loja> items = mercado.getLista();
     
     minerios Prata = new minerios(20, "Prata");
     minerios Ouro = new minerios(40, "Ouro");
@@ -143,7 +145,7 @@ public class principal extends javax.swing.JFrame {
         numeroPagina = 2;
         textAREA.setText("");
         textfield.setEnabled(true);
-       
+        
         for (int i = 0; i<items.size(); i++) {
         textAREA.setText(textAREA.getText() +
             "[NOME]: " + items.get(i).getNome() + "\n" +
@@ -187,36 +189,51 @@ public class principal extends javax.swing.JFrame {
     private void btnENVIARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnENVIARMouseClicked
         String comando = textfield.getText();
         
-        if (numeroPagina == 1) {
-            //inventario
-            comandosINV(comando);
-        } else if (numeroPagina == 2) {
-            //loja
-            comandosLOJA(comando);
-        } else {
-            textfield.setText("");
-            textfield.setToolTipText("Essa ação não está disponível, tente outra.");
-        }
+        textfield.setText("");
         
-    }//GEN-LAST:event_btnENVIARMouseClicked
-    
-    public void comandosINV(String c) {}
-    
-    public void comandosLOJA(String c) {      
-        //comprar -> nome do item -> quantidade
-        String[] textoSeparado = c.split("->");
-        System.out.println(textoSeparado[0]);
+        String[] textoSeparado = comando.split(" -> ");
         
         String acao = textoSeparado[0];
         String item = textoSeparado[1];
         
+        if (numeroPagina == 1) {
+            //inventario
+            comandosINV(acao, item);
+        } else if (numeroPagina == 2) {
+            //loja
+            comandosLOJA(acao, item);
+        } else {
+            textfield.setText("");
+        }
+        
+    }//GEN-LAST:event_btnENVIARMouseClicked
+    
+    public void comandosINV(String acao, String item) {
+        
+        if ("vender".equals(acao)) {
+            for (int i = 0; i<InventarioMinerios.size(); i++) {
+                if (item.equals(InventarioMinerios.get(i).getNomedoMinerio())) {
+                    Jogador.setOuro(Jogador.getOuro() + InventarioMinerios.get(i).getValordeVENDA());
+                    InventarioMinerios.remove(i);
+                }
+            }
+        } else if ("perfil".equals(acao)){
+            textAREA.setText(
+                "[NÍVEL]: "+Jogador.getNivel()+"\n"+
+                "[EXP]: "+Jogador.getExperienciaATUAL()+"\n"+
+                "[OURO]: "+Jogador.getOuro()+"\n");
+        } else {}
+        
+    }
+    
+    public void comandosLOJA(String acao, String item) {      
+        //comprar -> nome do item -> quantidade
     }
     
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new principal().setVisible(true);
-                
             }
         });
     }

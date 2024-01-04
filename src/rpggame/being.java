@@ -4,7 +4,10 @@ public class being {
     private int experienciaATUAL;
     private int ouro;
     
-    public being(){
+    public being(int nivel, int exp, int ouro){
+        this.nivel = nivel;
+        this.experienciaATUAL = exp;
+        this.ouro = ouro;
     }
 
     // GETS E SETS
