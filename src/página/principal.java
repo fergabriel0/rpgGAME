@@ -113,16 +113,18 @@ public class principal extends javax.swing.JFrame {
     
     loja mercado = new loja();
     int numeroPagina = 0;
-    being Jogador = new being(1, 20, 50);
+    being Jogador = new being(1, 0, 0);
     
     //PENDÊNCIAS:
-    // SISTEMA DE LOJA
-    // SISTEMA DE INVENTÁRIO
-    // SISTEMA DE JOGADOR
-    // SISTEMA DE COMPRA
-    // SISTEMA DE VENDA /~~
+    // SISTEMAS DA LOJA -- dos items, no caso.
+    // SISTEMA DE INVENTÁRIO -- funcionando, em sua maioria, falta mecânica de usar item.
+    // SISTEMA DE VENDA
+    /* consertar: tem que ficar clicando em inventário pra dar "refresh".
+    acho que só vende metade ao invés de tudo. (removeAll talvez resolva).
+    */
     
     ArrayList<minerios> InventarioMinerios = new ArrayList<>();
+    ArrayList<loja> InventarioItems = new ArrayList<>();
     ArrayList<loja> items = mercado.getLista();
     
     minerios Prata = new minerios(20, "Prata");
@@ -131,12 +133,19 @@ public class principal extends javax.swing.JFrame {
     
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
         numeroPagina = 1;
-        textAREA.setText("");
+        textAREA.setText("[MINÉRIOS:]\n");
         textfield.setEnabled(true);
         
         for (int i = 0; i<InventarioMinerios.size(); i++) {
             textAREA.setText(textAREA.getText()+
                 "[NOME]: " + InventarioMinerios.get(i).getNomedoMinerio()+"\n");
+        }
+        
+        textAREA.setText(textAREA.getText() + "\n[ITENS:]\n");
+        
+        for (int i = 0; i<InventarioItems.size(); i++) {
+            textAREA.setText(textAREA.getText()+
+                "[NOME]: " + InventarioItems.get(i).getNome()+"\n");
         }
         
     }//GEN-LAST:event_btn_inventarioActionPerformed
@@ -170,13 +179,15 @@ public class principal extends javax.swing.JFrame {
         
         int luckyGUESSconvertido = Integer.parseInt(luckyGUESS);
         
-        //modificação;
         if (luckyGUESSconvertido == randomizer) {
             InventarioMinerios.add(Platina);
+            Jogador.expMAIS(100);
         } else if ((luckyGUESSconvertido+10) >= randomizer && (luckyGUESSconvertido-10) <= randomizer) {
             InventarioMinerios.add(Ouro);
+            Jogador.expMAIS(50);
         } else {
             InventarioMinerios.add(Prata);
+            Jogador.expMAIS(5);
         }
         
         for (int i = 0; i<InventarioMinerios.size(); i++) {
@@ -209,6 +220,8 @@ public class principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnENVIARMouseClicked
     
     public void comandosINV(String acao, String item) {
+        //vender -> nome do item
+        //perfil -> ###
         
         if ("vender".equals(acao)) {
             for (int i = 0; i<InventarioMinerios.size(); i++) {
@@ -219,15 +232,24 @@ public class principal extends javax.swing.JFrame {
             }
         } else if ("perfil".equals(acao)){
             textAREA.setText(
-                "[NÍVEL]: "+Jogador.getNivel()+"\n"+
-                "[EXP]: "+Jogador.getExperienciaATUAL()+"\n"+
-                "[OURO]: "+Jogador.getOuro()+"\n");
+                "[NÍVEL]: "+Jogador.getNivel()+"/"+Jogador.getNívelMáximo()+"\n"+
+                "[EXP]: "+Jogador.getExperienciaATUAL()+"/"+Jogador.getExperienciaMáxima()+"\n"+
+                "[OURO]: "+Jogador.getOuro()+"$\n");
         } else {}
         
     }
     
     public void comandosLOJA(String acao, String item) {      
         //comprar -> nome do item -> quantidade
+        
+        if ("comprar".equals(acao)) {
+            for (int i = 0; i<items.size(); i++) {
+                if (item.equals(items.get(i).getNome())) {
+                    InventarioItems.add(items.get(i));
+                    System.out.println("item adicionado com sucesso");
+                }
+            }
+        } else {}
     }
     
     public static void main(String args[]) {

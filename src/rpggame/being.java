@@ -4,10 +4,24 @@ public class being {
     private int experienciaATUAL;
     private int ouro;
     
+    private int nívelMáximo = 5;
+    private double experienciaMáxima = 200;
+    
     public being(int nivel, int exp, int ouro){
         this.nivel = nivel;
         this.experienciaATUAL = exp;
         this.ouro = ouro;
+    }
+    
+    public void expMAIS(int val){
+        experienciaATUAL += val;
+        
+        if (experienciaATUAL >= experienciaMáxima) {
+            ouro += 100;
+            nivel += 1;
+            experienciaATUAL = 0;
+            experienciaMáxima = experienciaMáxima*2.5;
+        }
     }
 
     // GETS E SETS
@@ -33,5 +47,21 @@ public class being {
 
     public void setOuro(int ouro) {
         this.ouro = ouro;
+    }
+
+    public int getNívelMáximo() {
+        return nívelMáximo;
+    }
+
+    public void setNívelMáximo(int nívelMáximo) {
+        this.nívelMáximo = nívelMáximo;
+    }
+
+    public double getExperienciaMáxima() {
+        return experienciaMáxima;
+    }
+
+    public void setExperienciaMáxima(double experienciaMáxima) {
+        this.experienciaMáxima = experienciaMáxima;
     }
 }
