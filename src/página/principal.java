@@ -117,11 +117,11 @@ public class principal extends javax.swing.JFrame {
     
     //PENDÊNCIAS:
     // SISTEMAS DA LOJA -- dos items, no caso.
-    // SISTEMA DE INVENTÁRIO -- funcionando, em sua maioria, falta mecânica de usar item.
     // SISTEMA DE VENDA
     /* consertar: tem que ficar clicando em inventário pra dar "refresh".
     acho que só vende metade ao invés de tudo. (removeAll talvez resolva).
     */
+    // BALANCEAMENTO
     
     ArrayList<minerios> InventarioMinerios = new ArrayList<>();
     ArrayList<loja> InventarioItems = new ArrayList<>();
@@ -131,23 +131,27 @@ public class principal extends javax.swing.JFrame {
     minerios Ouro = new minerios(40, "Ouro");
     minerios Platina = new minerios(80, "Platina");
     
+    public void printarMinerios() {
+        for (int i = 0; i<InventarioMinerios.size(); i++) {
+        textAREA.setText(textAREA.getText() +
+            "[NOME]: " + InventarioMinerios.get(i).getNomedoMinerio() + "\n" +
+            "[VENDA]: " + InventarioMinerios.get(i).getValordeVENDA() + "$ \n\n");
+        }
+    }
+    
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
         numeroPagina = 1;
-        textAREA.setText("[MINÉRIOS:]\n");
+        textAREA.setText("[MINÉRIOS]:\n");
         textfield.setEnabled(true);
         
-        for (int i = 0; i<InventarioMinerios.size(); i++) {
-            textAREA.setText(textAREA.getText()+
-                "[NOME]: " + InventarioMinerios.get(i).getNomedoMinerio()+"\n");
-        }
+        printarMinerios();
         
-        textAREA.setText(textAREA.getText() + "\n[ITENS:]\n");
+        textAREA.setText(textAREA.getText() + "\n[ITENS]:\n");
         
         for (int i = 0; i<InventarioItems.size(); i++) {
             textAREA.setText(textAREA.getText()+
                 "[NOME]: " + InventarioItems.get(i).getNome()+"\n");
         }
-        
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
@@ -157,14 +161,13 @@ public class principal extends javax.swing.JFrame {
         
         for (int i = 0; i<items.size(); i++) {
         textAREA.setText(textAREA.getText() +
-            "[NOME]: " + items.get(i).getNome() + "\n" +
-            "[PREÇO]: " + items.get(i).getPreco() + "$ \n" +
-            "[DESCRIÇÃO]: " + items.get(i).getDescricao() + "\n" +
-            "[VENDA]: " + items.get(i).getPrecoVENDA() + "$ \n\n");
+            "[NOME]: " +items.get(i).getNome()+"\n"+
+            "[PREÇO]: " +items.get(i).getPreco()+"$ \n"+
+            "[DESCRIÇÃO]: " +items.get(i).getDescricao()+"\n\n");
         }
         
-        textAREA.setText(textAREA.getText()+"Para fazer a compra de um item, digite: comprar -> nome do item -> quantidade.\n"
-        +"Para fazer a venda de um item, digite: vender -> nome do item -> quantidade.");
+        textAREA.setText(textAREA.getText()+"Para fazer a compra de um item, digite: comprar -> nome do item\n"
+        +"Para fazer a venda de um item, digite: vender -> nome do item");
     }//GEN-LAST:event_btn_lojaActionPerformed
 
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
@@ -190,11 +193,7 @@ public class principal extends javax.swing.JFrame {
             Jogador.expMAIS(5);
         }
         
-        for (int i = 0; i<InventarioMinerios.size(); i++) {
-        textAREA.setText(textAREA.getText() +
-            "[NOME]: " + InventarioMinerios.get(i).getNomedoMinerio() + "\n" +
-            "[VENDA]: " + InventarioMinerios.get(i).getValordeVENDA() + "$ \n\n");
-        }
+        printarMinerios();
     }//GEN-LAST:event_btn_jogarMouseClicked
 
     private void btnENVIARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnENVIARMouseClicked
@@ -240,13 +239,15 @@ public class principal extends javax.swing.JFrame {
     }
     
     public void comandosLOJA(String acao, String item) {      
-        //comprar -> nome do item -> quantidade
+        //comprar -> nome do item
         
         if ("comprar".equals(acao)) {
             for (int i = 0; i<items.size(); i++) {
                 if (item.equals(items.get(i).getNome())) {
+                    if (Jogador.getOuro() >= items.get(i).getPreco()) {
+                    Jogador.setOuro(Jogador.getOuro() - items.get(i).getPreco());
                     InventarioItems.add(items.get(i));
-                    System.out.println("item adicionado com sucesso");
+                    } else {}
                 }
             }
         } else {}
