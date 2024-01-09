@@ -115,6 +115,10 @@ public class principal extends javax.swing.JFrame {
     int numeroPagina = 0;
     being Jogador = new being(1, 0, 0);
     
+    int modPrata = 1;
+    int modOuro = 1;
+    int modPlatina = 0;
+    
     //PENDÊNCIAS:
     // SISTEMAS DA LOJA -- dos items, no caso.
     // SISTEMA DE VENDA
@@ -182,15 +186,24 @@ public class principal extends javax.swing.JFrame {
         
         int luckyGUESSconvertido = Integer.parseInt(luckyGUESS);
         
-        if (luckyGUESSconvertido == randomizer) {
+        if ((luckyGUESSconvertido+modPlatina) >= randomizer && (luckyGUESSconvertido-modPlatina) <= randomizer) {
             InventarioMinerios.add(Platina);
             Jogador.expMAIS(100);
+            
         } else if ((luckyGUESSconvertido+10) >= randomizer && (luckyGUESSconvertido-10) <= randomizer) {
+            
+            for (int i = 0; i<modOuro; i++) {
             InventarioMinerios.add(Ouro);
             Jogador.expMAIS(50);
+            }         
+                    
         } else {
+            
+            for (int i = 0; i<modPrata; i++) {
             InventarioMinerios.add(Prata);
             Jogador.expMAIS(5);
+            }
+            
         }
         
         printarMinerios();
@@ -247,6 +260,15 @@ public class principal extends javax.swing.JFrame {
                     if (Jogador.getOuro() >= items.get(i).getPreco()) {
                     Jogador.setOuro(Jogador.getOuro() - items.get(i).getPreco());
                     InventarioItems.add(items.get(i));
+                    
+                    if (item.equals("Poção de Prata")) {
+                        modPrata = 3;
+                    } else if (item.equals("Colar de Ouro")) {
+                        modOuro = 2;
+                    } else if (item.equals("Moeda de Platina")) {
+                        modPlatina = 5;
+                    }
+                    
                     } else {}
                 }
             }
