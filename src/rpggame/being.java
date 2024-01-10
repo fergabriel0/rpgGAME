@@ -4,7 +4,7 @@ public class being {
     private int experienciaATUAL;
     private int ouro;
     
-    private int nívelMáximo = 5;
+    private int nívelMáximo = 8;
     private double experienciaMáxima = 200;
     
     public being(int nivel, int exp, int ouro){
@@ -20,7 +20,7 @@ public class being {
             ouro += 100;
             nivel += 1;
             experienciaATUAL = 0;
-            experienciaMáxima = experienciaMáxima*2.5;
+            experienciaMáxima = experienciaMáxima*3;
         }
     }
 

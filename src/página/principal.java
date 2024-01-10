@@ -132,8 +132,8 @@ public class principal extends javax.swing.JFrame {
     ArrayList<loja> items = mercado.getLista();
     
     minerios Prata = new minerios(20, "Prata");
-    minerios Ouro = new minerios(40, "Ouro");
-    minerios Platina = new minerios(80, "Platina");
+    minerios Ouro = new minerios(60, "Ouro");
+    minerios Platina = new minerios(120, "Platina");
     
     public void printarMinerios() {
         for (int i = 0; i<InventarioMinerios.size(); i++) {
@@ -188,9 +188,9 @@ public class principal extends javax.swing.JFrame {
         
         if ((luckyGUESSconvertido+modPlatina) >= randomizer && (luckyGUESSconvertido-modPlatina) <= randomizer) {
             InventarioMinerios.add(Platina);
-            Jogador.expMAIS(100);
+            Jogador.expMAIS(150);
             
-        } else if ((luckyGUESSconvertido+10) >= randomizer && (luckyGUESSconvertido-10) <= randomizer) {
+        } else if ((luckyGUESSconvertido+15) >= randomizer && (luckyGUESSconvertido-15) <= randomizer) {
             
             for (int i = 0; i<modOuro; i++) {
             InventarioMinerios.add(Ouro);
@@ -208,7 +208,7 @@ public class principal extends javax.swing.JFrame {
         
         printarMinerios();
     }//GEN-LAST:event_btn_jogarMouseClicked
-
+    
     private void btnENVIARMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnENVIARMouseClicked
         String comando = textfield.getText();
         
