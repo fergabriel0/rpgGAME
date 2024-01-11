@@ -119,23 +119,17 @@ public class principal extends javax.swing.JFrame {
     int modOuro = 1;
     int modPlatina = 0;
     
-    //PENDÊNCIAS:
-    // SISTEMAS DA LOJA -- dos items, no caso.
-    // SISTEMA DE VENDA
-    /* consertar: tem que ficar clicando em inventário pra dar "refresh".
-    acho que só vende metade ao invés de tudo. (removeAll talvez resolva).
-    */
-    // BALANCEAMENTO
-    
     ArrayList<minerios> InventarioMinerios = new ArrayList<>();
     ArrayList<loja> InventarioItems = new ArrayList<>();
     ArrayList<loja> items = mercado.getLista();
     
     minerios Prata = new minerios(20, "Prata");
     minerios Ouro = new minerios(60, "Ouro");
-    minerios Platina = new minerios(120, "Platina");
+    minerios Platina = new minerios(150, "Platina");
     
     public void printarMinerios() {
+        textAREA.setText("[MINÉRIOS]:\n");
+        
         for (int i = 0; i<InventarioMinerios.size(); i++) {
         textAREA.setText(textAREA.getText() +
             "[NOME]: " + InventarioMinerios.get(i).getNomedoMinerio() + "\n" +
@@ -143,19 +137,22 @@ public class principal extends javax.swing.JFrame {
         }
     }
     
+    public void printarItems() {
+        for (int i = 0; i<InventarioItems.size(); i++) {
+            textAREA.setText(textAREA.getText()+
+                "[NOME]: " + InventarioItems.get(i).getNome()+"\n");
+        }
+    }
+    
     private void btn_inventarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_inventarioActionPerformed
         numeroPagina = 1;
-        textAREA.setText("[MINÉRIOS]:\n");
         textfield.setEnabled(true);
         
         printarMinerios();
         
         textAREA.setText(textAREA.getText() + "\n[ITENS]:\n");
         
-        for (int i = 0; i<InventarioItems.size(); i++) {
-            textAREA.setText(textAREA.getText()+
-                "[NOME]: " + InventarioItems.get(i).getNome()+"\n");
-        }
+        printarItems();
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
@@ -240,6 +237,12 @@ public class principal extends javax.swing.JFrame {
                 if (item.equals(InventarioMinerios.get(i).getNomedoMinerio())) {
                     Jogador.setOuro(Jogador.getOuro() + InventarioMinerios.get(i).getValordeVENDA());
                     InventarioMinerios.remove(i);
+                    
+                        printarMinerios();
+        
+                        textAREA.setText(textAREA.getText() + "\n[ITENS]:\n");
+            
+                        printarItems();
                 }
             }
         } else if ("perfil".equals(acao)){
