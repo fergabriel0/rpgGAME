@@ -150,9 +150,12 @@ public class principal extends javax.swing.JFrame {
         
         printarMinerios();
         
-        textAREA.setText(textAREA.getText() + "\n[ITENS]:\n");
+        textAREA.setText(textAREA.getText() + "[ITENS]:\n");
         
         printarItems();
+        
+        textAREA.setText(textAREA.getText() + "Para fazer a venda de um item, digite: vender -> nome do item\n"+
+        "Para acessar o seu perfil, digite: perfil -> #");
     }//GEN-LAST:event_btn_inventarioActionPerformed
 
     private void btn_lojaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_lojaActionPerformed
@@ -167,8 +170,7 @@ public class principal extends javax.swing.JFrame {
             "[DESCRIÇÃO]: " +items.get(i).getDescricao()+"\n\n");
         }
         
-        textAREA.setText(textAREA.getText()+"Para fazer a compra de um item, digite: comprar -> nome do item\n"
-        +"Para fazer a venda de um item, digite: vender -> nome do item");
+        textAREA.setText(textAREA.getText()+"Para fazer a compra de um item, digite: comprar -> nome do item");
     }//GEN-LAST:event_btn_lojaActionPerformed
 
     private void btn_jogarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_jogarMouseClicked
@@ -179,7 +181,7 @@ public class principal extends javax.swing.JFrame {
         int randomizer = gerador.nextInt(101);
         
         String luckyGUESS;
-        luckyGUESS = JOptionPane.showInputDialog(null,"Escolha um número de 0 a 100.\nQuanto mais perto do número sorteado você acertar,\nmais serão as recompensas.","Jogo de Adivinhação",JOptionPane.PLAIN_MESSAGE);
+        luckyGUESS = JOptionPane.showInputDialog(null,"Escolha um número de 0 a 100.\nQuanto mais perto do número sorteado você acertar,\nmais raro será o minério adquirido.","Jogo de Adivinhação",JOptionPane.PLAIN_MESSAGE);
         
         int luckyGUESSconvertido = Integer.parseInt(luckyGUESS);
         
@@ -240,9 +242,12 @@ public class principal extends javax.swing.JFrame {
                     
                         printarMinerios();
         
-                        textAREA.setText(textAREA.getText() + "\n[ITENS]:\n");
+                        textAREA.setText(textAREA.getText() + "[ITENS]:\n");
             
                         printarItems();
+                        
+                        textAREA.setText(textAREA.getText() + "Para fazer a venda de um item, digite: vender -> nome do item\n"+
+                        "Para acessar o seu perfil, digite: perfil -> #");
                 }
             }
         } else if ("perfil".equals(acao)){

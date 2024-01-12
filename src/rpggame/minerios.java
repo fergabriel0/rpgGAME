@@ -12,7 +12,6 @@ public class minerios {
     
     public minerios(){}
     
-    ///////////////////////////////////////////////////////
     public int getValordeVENDA() {
         return valordeVENDA;
     }

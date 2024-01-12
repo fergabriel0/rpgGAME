@@ -29,18 +29,6 @@ public class loja {
         return lista;
     }
     
-    public void PocaoPrata() {
-        
-    }
-    
-    public void ColarOuro() {
-        
-    }
-    
-    public void MoedaPlat() {
-        
-    }   
-    
     //GETTERS
     public int getPreco() {
         return preco;
